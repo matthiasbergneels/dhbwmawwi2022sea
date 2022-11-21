@@ -1,0 +1,18 @@
+@startuml
+class lecture.chapter5.Car {
+- int hp
+- String color
+- int currentSpeed
+~ String brand
++ <<Create>> Car(int,String,String)
++ void setColor(String)
++ void accelerate(int)
++ void brake()
++ void fullBreak()
++ int getHp()
++ void setHp(int)
++ String getColor()
++ String getBrand()
++ int getCurrentSpeed()
+}
+@enduml
