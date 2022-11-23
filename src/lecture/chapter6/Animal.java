@@ -1,9 +1,9 @@
 package lecture.chapter6;
 
-public class Animal {
+public abstract class Animal {
 
     private float size;
-    private float weight;
+    float weight;
     protected String description;
 
     public Animal(float size, float weight, String description){
@@ -12,15 +12,13 @@ public class Animal {
         this.setDescription(description);
     }
 
-    public void breath(){
-        System.out.println("Das Tier " + description + " atmet.");
-    }
+    public abstract void breath();
 
     public void eat(){
         System.out.println("Das Tier " + description + " frisst.");
     }
 
-    public void move(){
+    public final void move(){
         System.out.println("Das Tier " + description + " bewegt sich.");
     }
 
@@ -46,5 +44,9 @@ public class Animal {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String toString(){
+        return this.getDescription() + ": " + this.getSize() + " cm, " + this.getWeight() + " kg";
     }
 }
