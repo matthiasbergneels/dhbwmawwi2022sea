@@ -29,7 +29,6 @@ public class FarmRun {
 
 
         // toString
-
         System.out.println(myDog);
         System.out.println(myDog2);
         System.out.println(myBird);
@@ -64,14 +63,15 @@ public class FarmRun {
 
 
         System.out.println("\n\n\nTierpflege: ");
-        for(Animal currentAnimal : animalShelter){
+        for(Animal currentAnimal : animalShelter){  // --> Narrowing Cast
             if(currentAnimal == null){
                 continue;
             }
 
+
             currentAnimal.move();
-            currentAnimal.eat();
-            currentAnimal.breath();
+            currentAnimal.eat();        // --> Polymorphie
+            currentAnimal.breath();     // --> Polymorphie
 
             if(currentAnimal instanceof Dog){
                 Dog currentDog = (Dog)currentAnimal;
