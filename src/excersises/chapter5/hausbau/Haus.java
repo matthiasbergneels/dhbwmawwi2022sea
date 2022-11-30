@@ -42,7 +42,7 @@ public class Haus {
     }
 
     // Effective Java (2. Auflage) --> (static) factory methods
-    public static Haus baueHausMitTüren(int tueren){
+    public static Haus baueHausMitTueren(int tueren){
       return new Haus(tueren, DEFAULT_FENSTER, DEFAULT_ETAGEN, DEFAULT_FLAECHE, DEFAULT_STRASSE, DEFAULT_HAUSNUMMER, DEFAULT_PLZ, DEFAULT_ORT, false);
     }
 
@@ -125,7 +125,7 @@ public class Haus {
         return hausnummer;
     }
     public void setHausnummer(String hausnummer) {
-        this.hausnummer = isEmptyOrDefault(hausnummer, DEFAULT_HAUSNUMMER);;
+        this.hausnummer = isEmptyOrDefault(hausnummer, DEFAULT_HAUSNUMMER);
     }
     public int getPlz() {
         return plz;
@@ -170,6 +170,7 @@ public class Haus {
 
 
 
+    @SuppressWarnings("removal")
     @Override
     protected void finalize(){
         objCnt--;

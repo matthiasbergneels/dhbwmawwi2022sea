@@ -1,6 +1,6 @@
 package excersises.chapter6;
 
-import excercises.chapter5.bahnhof.Fracht;
+import excersises.chapter5.bahnhof.Fracht;
 
 public class Tonne extends Fracht {
 
