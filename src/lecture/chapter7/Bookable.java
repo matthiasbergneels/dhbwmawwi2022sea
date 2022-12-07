@@ -7,6 +7,6 @@ public interface Bookable {
 
     public default boolean reserve(int slots){
         return false;
-    }
+    };
 
 }

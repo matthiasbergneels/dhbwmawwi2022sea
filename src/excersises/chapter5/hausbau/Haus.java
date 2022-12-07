@@ -173,6 +173,7 @@ public class Haus {
     @SuppressWarnings("removal")
     @Override
     protected void finalize(){
+        System.out.println("Das Haus " + this + " wurde abgerissen.");
         objCnt--;
     }
 

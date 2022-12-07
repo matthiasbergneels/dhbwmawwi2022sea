@@ -8,6 +8,7 @@ public class Car {
     public final ALLOWED_BRANDS brand;
 
     private static int carCount;
+    private static Car[] garage = new Car[100];
 
     public final static String ALLOWED_COLOR_RED = "rot";
     public final static String ALLOWED_COLOR_GREEN = "grün";
@@ -30,6 +31,12 @@ public class Car {
         currentSpeed = 0;
 
         carCount++;
+        for(int i = 0; i < garage.length; i++){
+            if(garage[i] == null){
+                garage[i] = this;
+                break;
+            }
+        }
     }
 
     public void setColor(String color) {
@@ -92,5 +99,11 @@ public class Car {
 
     public static int getCarCount(){
         return carCount;
+    }
+
+    public static void rePaintAllCars(String color){
+        for(Car currentCar : garage){
+            currentCar.color = color;
+        }
     }
 }
