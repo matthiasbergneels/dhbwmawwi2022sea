@@ -86,10 +86,10 @@ class CalculatorTest {
         assertEquals(100.0, result);
     }
 
-    @Disabled
+
     @ParameterizedTest
     @Tag("remoteRun")
-    @CsvFileSource(files = "multiplyTestCases.csv")
+    @CsvFileSource(resources = "/multiplyTestCases.csv")
     void multiplyParamterized() {
         System.out.println("multiply - Test");
         double result = calculatorUnderTest.multiply(10.0, 10.0);
