@@ -1,8 +1,10 @@
 package lecture.chapter7;
 
+import lecture.chapter8.NotEnoughFreeSlotsException;
+
 public interface Bookable {
 
-    public boolean book(int slots);
+    public void book(int slots) throws NotEnoughFreeSlotsException;
     public int freeSlots();
 
     public default boolean reserve(int slots){
