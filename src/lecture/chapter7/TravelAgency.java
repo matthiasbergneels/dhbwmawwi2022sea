@@ -1,5 +1,7 @@
 package lecture.chapter7;
 
+import lecture.chapter8.NotEnoughFreeSlotsException;
+
 public class TravelAgency {
 
     public static void main(String[] args) {
@@ -25,14 +27,18 @@ public class TravelAgency {
             if(bookableEntity == null){
                 continue;
             }
-            System.out.println("Freie Plätze: " + bookableEntity.freeSlots());
-            boolean successfullBooking = bookableEntity.book(100);
 
-            if(successfullBooking){
+            try {
+                System.out.println("Freie Plätze: " + bookableEntity.freeSlots());
+                bookableEntity.book(100);
+
                 System.out.println("Die Plätze wurden gebucht");
                 System.out.println("Es sind noch " + bookableEntity.freeSlots() + " Plätze frei");
-            } else {
-                System.out.println("Nicht genug freie Plätze!");
+            }catch(NotEnoughFreeSlotsException myNotEnoughFreeSlotsException){
+                System.out.println(myNotEnoughFreeSlotsException.getMessage());
+                System.out.println("Freie Plätze: " + myNotEnoughFreeSlotsException.getCurrentFreeSlots());
+            }finally{
+                System.out.println("Finally: An mir kommst du nicht vorbei!");
             }
 
             if(bookableEntity instanceof Plane){
