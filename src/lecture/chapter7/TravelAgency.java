@@ -4,7 +4,7 @@ import lecture.chapter8.NotEnoughFreeSlotsException;
 
 public class TravelAgency {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         Hotel hilton = new Hotel(100);
         Hotel holidayInn = new Hotel(400);
         Plane planeOne = new Plane(80);
@@ -37,7 +37,13 @@ public class TravelAgency {
             }catch(NotEnoughFreeSlotsException myNotEnoughFreeSlotsException){
                 System.out.println(myNotEnoughFreeSlotsException.getMessage());
                 System.out.println("Freie Plätze: " + myNotEnoughFreeSlotsException.getCurrentFreeSlots());
-            }finally{
+            }catch(NoSuchMethodException e){
+
+            }catch(Exception e){
+                // Catch All
+                throw e;
+            }
+            finally{
                 System.out.println("Finally: An mir kommst du nicht vorbei!");
             }
 

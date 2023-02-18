@@ -1,6 +1,6 @@
 package lecture.chapter8;
 
-public class NotEnoughFreeSlotsException extends Exception{
+public class NotEnoughFreeSlotsException extends Exception {
 
     private final int currentFreeSlots;
 
