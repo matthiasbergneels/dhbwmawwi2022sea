@@ -4,6 +4,7 @@ import lecture.chapter7.Hotel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,5 +32,18 @@ class NotEnoughFreeSlotsExceptionTest {
         Hotel myHotel = new Hotel(100);
 
         Assertions.assertDoesNotThrow(() -> {myHotel.book(99);});
+    }
+
+    @Test
+    void HotelThrowsNoExceptionInnerClass(){
+
+        Hotel myHotel = new Hotel(100);
+
+        Assertions.assertDoesNotThrow(new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                myHotel.book(99);
+            }
+        });
     }
 }
