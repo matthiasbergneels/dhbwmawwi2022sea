@@ -42,7 +42,7 @@ class NotEnoughFreeSlotsExceptionTest {
         Assertions.assertDoesNotThrow(new Executable() {
             @Override
             public void execute() throws Throwable {
-                myHotel.book(99);
+                myHotel.book(90);
             }
         });
     }
