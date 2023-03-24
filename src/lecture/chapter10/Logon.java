@@ -20,6 +20,8 @@ public class Logon extends JFrame {
         JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
         portField.setColumns(3);
 
+        myComboBox.addItemListener(new ComboBoxItemListener(portField));
+
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
 
