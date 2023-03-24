@@ -11,6 +11,9 @@ public class MyJFrame {
 
         myFrame.add(new JLabel("Hier wird bald der Hund stehen!"));
         myFrame.add(new JButton("Feierabend"));
+        myFrame.getContentPane().add(new JButton("Feierabend on Content Pane"));
+        //myFrame.getLayeredPane().add(new JButton("Feierabend on Layered Pane"));
+
 
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.pack();

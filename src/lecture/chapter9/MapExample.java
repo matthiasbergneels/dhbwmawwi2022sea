@@ -26,6 +26,5 @@ public class MapExample {
             System.out.println(currentStudent);
         }
 
-
     }
 }
