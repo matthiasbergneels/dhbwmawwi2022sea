@@ -1,6 +1,7 @@
 package lecture.chapter10;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.text.ParseException;
 
 
@@ -20,7 +21,32 @@ public class Logon extends JFrame {
         JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
         portField.setColumns(3);
 
-        myComboBox.addItemListener(new ComboBoxItemListener(portField));
+        //myComboBox.addItemListener(new ComboBoxItemListener(portField));
+
+        myComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED) {
+                    System.out.println("StateChange: " + e.getStateChange());
+                    System.out.println("Item: " + e.getItem());
+                    System.out.println("ParamString: " + e.paramString());
+
+                    //JComboBox<String> myComboBox = (JComboBox<String>) e.getSource();
+
+                    System.out.println("Selected Item: " + myComboBox.getSelectedItem());
+
+                    if(e.getItem().equals("HTTP")){
+                        portField.setText("80");
+                    }else if(e.getItem().equals("FTP")){
+                        portField.setText("21");
+                    }else{
+                        portField.setText("");
+                    }
+                }
+            }
+        });
+
+
 
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -82,6 +108,47 @@ public class Logon extends JFrame {
         // create & assign Buttons
         JButton okButton = new JButton("Ok");
         JButton cancelButton = new JButton("Schliessen");
+        JButton printButton = new JButton("Ausgabe");
+
+        ActionListener buttonListener = e -> {
+
+            if(e.getSource() == okButton || e.getSource() == printButton){
+                System.out.println("Button gedrückt. Aktueller Port: " + portField.getText());
+            } else if(e.getSource() == cancelButton){
+                System.exit(0);
+            }
+        };
+
+        okButton.addActionListener(buttonListener);
+        cancelButton.addActionListener(buttonListener);
+        printButton.addActionListener(buttonListener);
+
+        okButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Button gedrückt! Aktueller Port: " + portField.getText());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         southPanel.add(okButton);
         southPanel.add(cancelButton);
