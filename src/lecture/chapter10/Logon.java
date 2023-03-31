@@ -121,9 +121,9 @@ public class Logon extends JFrame {
             String actionCommand = e.getActionCommand();
             System.out.println(actionCommand);
 
-            if(actionCommand.equals("Ok") || actionCommand.equals("Ausgabe")){
+            if(actionCommand.equals(ACTION_PRINT)){
                 System.out.println("Button gedrückt. Aktueller Port: " + portField.getText());
-            }else if(actionCommand.equals("Schliessen")){
+            }else if(actionCommand.equals(ACTION_CLOSE)){
                 System.exit(0);
             }
 
@@ -191,6 +191,34 @@ public class Logon extends JFrame {
 
         this.add(mainPanel);
 
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("Datei");
+        JMenuItem printMenuItem = new JMenuItem("Ausgabe");
+        printMenuItem.setActionCommand(ACTION_PRINT);
+        printMenuItem.addActionListener(buttonListener);
+        JMenuItem closeMenuItem = new JMenuItem("Schliessen");
+        closeMenuItem.setActionCommand(ACTION_CLOSE);
+        closeMenuItem.addActionListener(buttonListener);
+
+        fileMenu.add(printMenuItem);
+        fileMenu.add(closeMenuItem);
+
+        menuBar.add(fileMenu);
+
+        this.setJMenuBar(menuBar);
+
+
+        MenuBar awtMenuBar = new MenuBar();
+        Menu awtFileMenu = new Menu("Datei");
+        MenuItem awtCloseMenuItem = new MenuItem("Schliessen");
+        awtCloseMenuItem.setActionCommand(ACTION_CLOSE);
+        awtCloseMenuItem.addActionListener(buttonListener);
+
+        awtFileMenu.add(awtCloseMenuItem);
+        awtMenuBar.add(awtFileMenu);
+
+        this.setMenuBar(awtMenuBar);
+
         // set JFrame behavior
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
@@ -198,6 +226,24 @@ public class Logon extends JFrame {
     }
 
     public static void main(String[] args) throws ParseException {
+        GraphicsDevice defaultScreenDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+        System.out.println(String.format("Screen Dimension: %.0f x %.0f",
+                defaultScreenDevice.getDefaultConfiguration().getBounds().getWidth(),
+                defaultScreenDevice.getDefaultConfiguration().getBounds().getHeight()));
+
         new Logon();
+        
+        GraphicsEnvironment virtualGraphicsEvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] screens = virtualGraphicsEvironment.getScreenDevices();
+
+        for(GraphicsDevice screen : screens){
+            System.out.println(screen);
+            System.out.println(screen.getDefaultConfiguration());
+            System.out.println(screen.getDisplayMode());
+            System.out.println(screen.getDefaultConfiguration().getBounds());
+            System.out.println(screen.getDefaultConfiguration().getBounds().getWidth() + " x " + screen.getDefaultConfiguration().getBounds().getHeight());
+            System.out.println(screen.getDefaultConfiguration().getBounds().getX() + " / " + screen.getDefaultConfiguration().getBounds().getY());
+        }
     }
 }
