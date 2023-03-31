@@ -12,6 +12,9 @@ import javax.swing.text.MaskFormatter;
 
 public class Logon extends JFrame {
 
+    private static final String ACTION_PRINT = "ACTION_PRINT";
+    private static final String ACTION_CLOSE = "ACTION_CLOSE";
+
     public Logon() throws ParseException {
         this.setTitle("Logon");
 
@@ -107,16 +110,31 @@ public class Logon extends JFrame {
 
         // create & assign Buttons
         JButton okButton = new JButton("Ok");
+        okButton.setActionCommand(ACTION_PRINT);
         JButton cancelButton = new JButton("Schliessen");
+        cancelButton.setActionCommand(ACTION_CLOSE);
         JButton printButton = new JButton("Ausgabe");
+        printButton.setActionCommand(ACTION_PRINT);
 
         ActionListener buttonListener = e -> {
 
+            String actionCommand = e.getActionCommand();
+            System.out.println(actionCommand);
+
+            if(actionCommand.equals("Ok") || actionCommand.equals("Ausgabe")){
+                System.out.println("Button gedrückt. Aktueller Port: " + portField.getText());
+            }else if(actionCommand.equals("Schliessen")){
+                System.exit(0);
+            }
+
+            /*
             if(e.getSource() == okButton || e.getSource() == printButton){
                 System.out.println("Button gedrückt. Aktueller Port: " + portField.getText());
             } else if(e.getSource() == cancelButton){
                 System.exit(0);
             }
+
+             */
         };
 
         okButton.addActionListener(buttonListener);
@@ -152,6 +170,7 @@ public class Logon extends JFrame {
 
         southPanel.add(okButton);
         southPanel.add(cancelButton);
+        southPanel.add(printButton);
 
         // create & assign Borders
         Border etchedBorder = BorderFactory.createEtchedBorder();
