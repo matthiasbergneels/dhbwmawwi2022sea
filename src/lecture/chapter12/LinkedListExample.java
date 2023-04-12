@@ -12,6 +12,14 @@ public class LinkedListExample {
         numberList.add(102);
 
 
+        System.out.println("Listen Ausgabe (iterativ)");
+        numberList.printList();
+
+        numberList.remove(79);
+
+        System.out.println("Listen Ausgabe (rekursiv)");
+        numberList.printListRecursive();
+
         System.out.println("Ende");
     }
 }

@@ -3,6 +3,7 @@ package lecture.chapter12;
 public class LinkedList<T> {
 
     private Node firstNode;
+    private int size;
 
     void add(T data){
         Node newNode = new Node(data);
@@ -21,12 +22,51 @@ public class LinkedList<T> {
         nextNode.setNextNode(newNode);
     }
 
-    void printList(){
-        // TODO
+    public void printList(){
+        Node nextNode = firstNode;
+
+        while(nextNode != null){
+            System.out.println(nextNode.getData());
+            nextNode = nextNode.getNextNode();
+        }
+    }
+
+    public void printListRecursive(){
+        if(firstNode == null){
+            System.out.println("Liste ist leer");
+            return;
+        }
+
+        printListRecursive(firstNode);
+    }
+
+    private void printListRecursive(Node nextNode){
+        System.out.println(nextNode.getData());
+        if(nextNode.getNextNode() != null){
+            printListRecursive(nextNode.getNextNode());
+        }
     }
 
     T remove(T data){
-        // TODO - removes first occurence of data (return null if no occurence)
+        if(firstNode != null){
+
+            if(firstNode.getData().equals(data)){
+                firstNode = firstNode.getNextNode();
+                size--;
+                return data;
+            }
+
+            Node currentNode = firstNode;
+            while(currentNode.getNextNode() != null){
+                if(currentNode.getNextNode().getData().equals(data)){
+                    currentNode.setNextNode(currentNode.getNextNode().getNextNode());
+                    size--;
+                    return data;
+                }
+                currentNode = currentNode.getNextNode();
+            }
+
+        }
         return null;
     }
 
