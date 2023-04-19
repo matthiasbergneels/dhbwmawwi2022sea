@@ -49,6 +49,84 @@ public class BinaryTree<T extends Comparable> {
         return this.size;
     }
 
+    // traversierung (path traversal)
+
+    // in-Order --> left - current (part-tree root) - right
+    public void printInOrder(){
+
+        if(root == null){
+            System.out.println("Der Baum ist leer!");
+            return;
+        }
+
+        System.out.println("In-Order Ausgabe:");
+        printInOrder(root);
+        System.out.println();
+    }
+
+    private void printInOrder(Node currentNode){
+
+        if(currentNode.getLeftNode() != null){
+            printInOrder(currentNode.getLeftNode());
+        }
+
+        System.out.print(currentNode.getData() + ", ");
+
+        if(currentNode.getRightNode() != null){
+            printInOrder(currentNode.getRightNode());
+        }
+    }
+
+    // pre-order current-left-right
+    public void printPreOrder(){
+
+        if(root == null){
+            System.out.println("Der Baum ist leer!");
+            return;
+        }
+
+        System.out.println("Pre-Order Ausgabe:");
+        printPreOrder(root);
+        System.out.println();
+    }
+
+    private void printPreOrder(Node currentNode){
+        System.out.print(currentNode.getData() + ", ");
+
+        if(currentNode.getLeftNode() != null){
+            printPreOrder(currentNode.getLeftNode());
+        }
+
+        if(currentNode.getRightNode() != null){
+            printPreOrder(currentNode.getRightNode());
+        }
+    }
+
+    // post-order left-right-current
+    public void printPostOrder(){
+
+        if(root == null){
+            System.out.println("Der Baum ist leer!");
+            return;
+        }
+
+        System.out.println("Post-Order Ausgabe:");
+        printPostOrder(root);
+        System.out.println();
+    }
+
+    private void printPostOrder(Node currentNode){
+        if(currentNode.getLeftNode() != null){
+            printPostOrder(currentNode.getLeftNode());
+        }
+
+        if(currentNode.getRightNode() != null){
+            printPostOrder(currentNode.getRightNode());
+        }
+
+        System.out.print(currentNode.getData() + ", ");
+    }
+
     private class Node{
         private final T data;
         private Node leftNode;
