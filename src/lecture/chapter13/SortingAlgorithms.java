@@ -2,6 +2,8 @@ package lecture.chapter13;
 
 public class SortingAlgorithms {
 
+  private static long swapCount = 0;
+
 
   public static void main(String[] args) {
     int[] toSort = {50, 70, 100, 80, 40, 30, 20, 10 ,60};
@@ -28,6 +30,7 @@ public class SortingAlgorithms {
 
   public static int[] bubbleSort(int[] numbers){
 
+    swapCount = 0;
     long startTime = System.nanoTime();
 
     for(int i = numbers.length; i > 0; i--){
@@ -69,7 +72,7 @@ public class SortingAlgorithms {
   public static int[] bubbleSortV3(int[] numbers){
 
     int j = numbers.length - 1;
-    boolean swapped = false;
+    boolean swapped;
 
     long startTime = System.nanoTime();
 
@@ -91,6 +94,32 @@ public class SortingAlgorithms {
 
     return numbers;
   }
+
+  public static int[] selectionSort(int[] numbers){
+
+    int sortedMarker = numbers.length - 1;
+
+    long startTime = System.nanoTime();
+
+    while(sortedMarker > 0){
+      int maxPos = 0;
+      for(int i = 1; i <= sortedMarker; i++){
+        if(numbers[i] > numbers[maxPos]){
+          maxPos = i;
+        }
+      }
+
+      swap(numbers, maxPos, sortedMarker);
+      sortedMarker--;
+    }
+
+    long stopTime = System.nanoTime();
+
+    printRuntimeDuration("SelectionSort", numbers.length, startTime, stopTime);
+
+    return numbers;
+  }
+
   public static void printArray(int[] numbers){
     for(int number : numbers){
       System.out.print(number + ", ");
@@ -102,12 +131,13 @@ public class SortingAlgorithms {
     int temp = array[a];
     array[a] = array[b];
     array[b] = temp;
+    swapCount++;
   }
 
   private static void printRuntimeDuration(String algorithmName, int elementCount, long startTime, long endTime){
     long durationInNanoSeconds = endTime - startTime;
     long durationInMilliSeconds = (long) (durationInNanoSeconds / 10e5);
 
-    System.out.println("Runtime for " + elementCount + " on " + algorithmName + ": " + durationInNanoSeconds + " ns (" + durationInMilliSeconds + " ms)");
+    System.out.println("Runtime for " + elementCount + " on " + algorithmName + ": " + durationInNanoSeconds + " ns (" + durationInMilliSeconds + " ms); SwapCount: " + swapCount);
   }
 }
