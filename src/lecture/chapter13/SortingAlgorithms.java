@@ -26,6 +26,10 @@ public class SortingAlgorithms {
     System.out.println("Bubble Sort V3 vor-sortiert: ");
     printArray(sorted);
 
+    sorted = quickSort(toSort.clone());
+    System.out.println("Quick Sort sortiert: ");
+    printArray(sorted);
+
   }
 
   public static int[] bubbleSort(int[] numbers){
@@ -119,6 +123,50 @@ public class SortingAlgorithms {
 
     return numbers;
   }
+
+
+  public static int[] quickSort(int[] numbers){
+    long startTime = System.nanoTime();
+
+    quickSort(numbers, 0, numbers.length-1);
+
+    long stopTime = System.nanoTime();
+    printRuntimeDuration("QuickSort", numbers.length, startTime, stopTime);
+    return numbers;
+  }
+
+  private static void quickSort(int[] numbers, int left, int right){
+
+    int indexLeft = left;
+    int indexRight = right;
+
+    if(left < right){
+      int pivot = numbers[(indexLeft + indexRight) / 2];
+
+      while(indexLeft <= indexRight){
+        while(numbers[indexLeft] < pivot){
+          indexLeft++;
+        }
+        while(numbers[indexRight] > pivot){
+          indexRight--;
+        }
+        if(indexLeft <= indexRight){
+          swap(numbers, indexLeft, indexRight);
+          indexLeft++;
+          indexRight--;
+        }
+      }
+
+      if(left < indexRight){
+        quickSort(numbers, left, indexRight);
+      }
+      if(indexLeft < right){
+        quickSort(numbers, indexLeft, right);
+      }
+
+    }
+  }
+
 
   public static void printArray(int[] numbers){
     for(int number : numbers){

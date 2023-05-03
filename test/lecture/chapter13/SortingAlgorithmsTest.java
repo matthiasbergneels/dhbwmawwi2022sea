@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SortingAlgorithmsTest {
 
-  static int count = 20000;
+  static int count = 200000;
   static int randomRange = 3000000;
   static int[] toSort = null;
 
@@ -42,6 +42,12 @@ class SortingAlgorithmsTest {
     @Test
     void selectionSort() {
       int[] sortedArray = SortingAlgorithms.selectionSort(toSort.clone());
+      assertTrue(isSorted(sortedArray));
+    }
+
+    @Test
+    void quickSort() {
+      int[] sortedArray = SortingAlgorithms.quickSort(toSort.clone());
       assertTrue(isSorted(sortedArray));
     }
   }
@@ -77,6 +83,12 @@ class SortingAlgorithmsTest {
       int[] sortedArray = SortingAlgorithms.selectionSort(toSort.clone());
       assertTrue(isSorted(sortedArray));
     }
+
+    @Test
+    void quickSort() {
+      int[] sortedArray = SortingAlgorithms.quickSort(toSort.clone());
+      assertTrue(isSorted(sortedArray));
+    }
   }
 
   @Nested
@@ -108,6 +120,12 @@ class SortingAlgorithmsTest {
     @Test
     void selectionSort() {
       int[] sortedArray = SortingAlgorithms.selectionSort(toSort.clone());
+      assertTrue(isSorted(sortedArray));
+    }
+
+    @Test
+    void quickSort() {
+      int[] sortedArray = SortingAlgorithms.quickSort(toSort.clone());
       assertTrue(isSorted(sortedArray));
     }
 
